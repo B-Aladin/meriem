@@ -1,2 +1,801 @@
-<html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السيرة الذاتية - مريم فروج</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary-purple: #6A1B9A;
+            --deep-purple: #4A148C;
+            --royal-purple: #7B1FA2;
+            --gold: #FFD700;
+            --bright-gold: #FFA000;
+            --rose-gold: #E91E63;
+            --cream: #FFF8E1;
+            --white: #FFFFFF;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+            --shadow-glow: 0 0 30px rgba(106, 27, 154, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(270deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 1200% 1200%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(106, 27, 154, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: floatingBg 20s ease-in-out infinite;
+        }
+
+        @keyframes floatingBg {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .particle:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 40%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 60%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 80%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--royal-purple) 50%, var(--rose-gold) 100%);
+            color: white;
+            border-radius: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-glow), 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            animation: headerFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes headerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255,255,255,0.03) 10px,
+                    rgba(255,255,255,0.03) 20px
+                );
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(-100px) translateY(-100px); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(45deg, #fff, #FFD700, #fff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+            animation: subtitleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtitleGlow {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+            100% { text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 30px rgba(255,215,0,0.6); }
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: headingPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes headingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+            animation: lineExpand 1.5s ease-in-out infinite;
+        }
+
+        @keyframes lineExpand {
+            0%, 100% { width: 60px; }
+            50% { width: 80px; }
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border-radius: 15px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-right: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-gold);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .info-item:hover {
+            transform: translateX(-10px) scale(1.03);
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.15) 0%, rgba(255, 215, 0, 0.15) 100%);
+            box-shadow: 0 10px 25px rgba(106, 27, 154, 0.2);
+        }
+
+        .info-item span:first-child {
+            font-size: 1.5rem;
+            margin-left: 15px;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .info-item strong {
+            color: var(--deep-purple);
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .experience-item, .education-item, .project-item {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(233, 30, 99, 0.1) 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border-right: 6px solid var(--gold);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before, .education-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(106, 27, 154, 0.05) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .experience-item:hover::before, .education-item:hover::before, .project-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .experience-item:hover, .education-item:hover, .project-item:hover {
+            transform: translateX(-5px) scale(1.02);
+            border-right-color: var(--bright-gold);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .experience-item h3, .education-item h3, .project-item h3 {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .date {
+            color: var(--bright-gold);
+            font-weight: 600;
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(106, 27, 154, 0.1) 100%);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .language-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .language-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(106, 27, 154, 0.2);
+        }
+
+        .language-level {
+            background: var(--gradient-gold);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            animation: levelGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes levelGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--deep-purple) 50%, var(--rose-gold) 100%);
+            background-size: 200% 200%;
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(106, 27, 154, 0.4);
+            margin: 30px auto;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            animation: btnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(106, 27, 154, 0.6);
+            background-position: 100% 100%;
+            animation: backgroundShift 0.5s ease infinite;
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            animation: iconRotate 4s ease-in-out infinite;
+        }
+
+        @keyframes iconRotate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.1); }
+            75% { transform: rotate(-5deg) scale(1.1); }
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .scroll-animate.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .card h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <header class="header scroll-animate">
+            <h1>مريم فروج</h1>
+            <p class="subtitle">أستاذة اللغة العربية المتخصصة</p>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="card scroll-animate">
+                    <h2><span class="section-icon">👤</span>المعلومات الشخصية</h2>
+                    <div class="info-item">
+                        <span>📅</span>
+                        <strong>تاريخ الميلاد:</strong>
+                        11/10/1989 - باتنة
+                    </div>
+                    <div class="info-item">
+                        <span>👨‍👩‍👧‍👦</span>
+                        <strong>الحالة العائلية:</strong>
+                        متزوجة، أم لطفلين
+                    </div>
+                    <div class="info-item">
+                        <span>📧</span>
+                        <strong>البريد الإلكتروني:</strong>
+                        jolijad1987@gmail.com
+                    </div>
+                    <div class="info-item">
+                        <span>📱</span>
+                        <strong>الهاتف:</strong>
+                        0663939992
+                    </div>
+                </div>
+
+                <div class="card scroll-animate">
+                    <h2><span class="section-icon">🗣️</span>اللغات</h2>
+                    <div class="language-item">
+                        <span><strong>العربية</strong></span>
+                        <span class="language-level">ممتاز</span>
+                    </div>
+                    <div class="language-item">
+                        <span><strong>الفرنسية</strong></span>
+                        <span class="language-level">جيد</span>
+                    </div>
+                    <div class="language-item">
+                        <span><strong>الإنجليزية</strong></span>
+                        <span class="language-level">جيد</span>
+                    </div>
+                </div>
+
+                <div class="card scroll-animate">
+                    <h2><span class="section-icon">🎓</span>التعليم والتكوين</h2>
+                    <div class="education-item">
+                        <h3>ليسانس في الأدب العربي</h3>
+                        <p>جامعة الحاج لخضر، باتنة</p>
+                        <span class="date">2011</span>
+                    </div>
+                    <div class="education-item">
+                        <h3>تكوين في اللغة الإنجليزية</h3>
+                        <span class="date">2010</span>
+                    </div>
+                    <div class="education-item">
+                        <h3>تكوين في الإعلام الآلي</h3>
+                    </div>
+                    <div class="education-item">
+                        <h3>دورة التعليم بمنهج المنتوري</h3>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="content">
+                <div class="card scroll-animate">
+                    <h2><span class="section-icon">👩‍🏫</span>الخبرة المهنية</h2>
+                    <div class="experience-item">
+                        <h3>أستاذة اللغة العربية</h3>
+                        <p>تدريس جميع السنوات التعليمية (الأولى إلى الرابعة)</p>
+                        <span class="date">2016 - حتى اليوم</span>
+                    </div>
+                    <div class="experience-item">
+                        <h3>مربية في التربية التحضيرية</h3>
+                        <span class="date">2014 - 2016</span>
+                    </div>
+                </div>
+
+                <div class="card scroll-animate">
+                    <h2><span class="section-icon">🏆</span>المساهمات والمشاريع</h2>
+                    <div class="project-item">
+                        <h3>🎭 تنظيم مسابقات ثقافية ودينية</h3>
+                        <p>مسابقة "القاص الصغير" و "ورتل القرآن"</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>📰 إعداد مجلة مدرسية</h3>
+                        <p>مجلة بعنوان "غزة تنزف"</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>🌱 تأسيس نادٍ بيئي</h3>
+                        <p>تكوين وإدارة نادٍ بيئي للطلاب</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>🏛️ مشاركة في مسابقة التراث الوطني</h3>
+                    </div>
+                    <div class="project-item">
+                        <h3>📚 تنظيم مسابقة "المطالعة زاد الفكر"</h3>
+                        <span class="date">صيف 2024</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <button class="download-btn scroll-animate" onclick="downloadCV()">
+            📄 تحميل السيرة الذاتية بصيغة PDF
+        </button>
+    </div>
+
+    <script>
+       function downloadCV() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Set font to support Arabic (if available)
+    doc.setFont("helvetica");
+    
+    // Add Arabic text (you may need to reverse the text for proper display)
+    doc.setFontSize(20);
+    doc.text("Mariam Farouj - CV", 105, 20, { align: 'center' });
+    
+    doc.setFontSize(14);
+    doc.text("Arabic Language Teacher", 105, 35, { align: 'center' });
+    
+    // Personal Information
+    doc.setFontSize(16);
+    doc.text("Personal Information:", 20, 55);
+    doc.setFontSize(12);
+    doc.text("Birth Date: 11/10/1989 - Batna", 20, 70);
+    doc.text("Family Status: Married, mother of two", 20, 80);
+    doc.text("Email: jolijad1987@gmail.com", 20, 90);
+    doc.text("Phone: 0663939992", 20, 100);
+    
+    // Education
+    doc.setFontSize(16);
+    doc.text("Education:", 20, 120);
+    doc.setFontSize(12);
+    doc.text("Bachelor in Arabic Literature - Batna University (2011)", 20, 135);
+    doc.text("English Language Training (2010)", 20, 145);
+    doc.text("Computer Science Training", 20, 155);
+    doc.text("Montessori Teaching Method Course", 20, 165);
+    
+    // Experience
+    doc.setFontSize(16);
+    doc.text("Professional Experience:", 20, 185);
+    doc.setFontSize(12);
+    doc.text("Arabic Language Teacher (2016 - Present)", 20, 200);
+    doc.text("Teaching all educational levels (1st to 4th grade)", 20, 210);
+    doc.text("Preparatory Education Teacher (2014 - 2016)", 20, 220);
+    
+    // Languages
+    doc.setFontSize(16);
+    doc.text("Languages:", 20, 240);
+    doc.setFontSize(12);
+    doc.text("Arabic: Excellent", 20, 255);
+    doc.text("French: Good", 20, 265);
+    doc.text("English: Good", 20, 275);
+    
+    // Save the PDF
+    doc.save("Mariam_Farouj_CV.pdf");
+}
+
+        // Smooth scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create intersection observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Add staggered delay for multiple elements
+                        const elements = entry.target.querySelectorAll('.info-item, .experience-item, .education-item, .project-item, .language-item');
+                        elements.forEach((el, index) => {
+                            setTimeout(() => {
+                                el.style.animation = `slideInRight 0.6s ease-out forwards`;
+                            }, index * 100);
+                        });
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all scroll-animate elements
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add extra hover effects
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.98)';
+                    this.style.backdropFilter = 'blur(25px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.95)';
+                    this.style.backdropFilter = 'blur(20px)';
+                });
+            });
+
+            // Add dynamic text effects
+            const headings = document.querySelectorAll('h1, h2, h3');
+            headings.forEach(heading => {
+                heading.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.textShadow = '0 0 20px rgba(106, 27, 154, 0.5)';
+                });
+                
+                heading.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.textShadow = 'none';
+                });
+            });
+        });
+
+        // Add keyframe for slide in right animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
 </html>
